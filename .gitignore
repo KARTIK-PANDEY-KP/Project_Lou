@@ -17,3 +17,4 @@ __pycache__/
 *.env.production.local
 *.env.development
 *.env.test
+tracker_mcp/firebase-credentials.json
