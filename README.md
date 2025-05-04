@@ -153,3 +153,94 @@ Whether you're researching, managing contacts, or automating your workflow, Proj
 
 ---
 Made with ❤️ by Kartik Pandey 
+
+## 🔧 Configuration Structure
+
+Here's the complete configuration structure for all MCP servers. Replace the placeholder values with your actual configuration:
+
+```json
+{
+  "mcpServers": {
+    "tracker-mcp": {
+      "command": "path/to/Python.exe",
+      "args": ["path/to/tracker_mcp/main.py"],
+      "cwd": "path/to/tracker_mcp",
+      "env": {
+        "FIREBASE_CREDENTIALS_PATH": "path/to/firebase-credentials.json",
+        "PYTHONUNBUFFERED": "1",
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONPATH": "path/to/tracker_mcp"
+      },
+      "requiredTools": [
+        "track_url_email",
+        "get_tracked_data"
+      ],
+      "disabled": false
+    },
+    "linkedin-rapidapi": {
+      "command": "Python",
+      "args": ["path/to/rapidapi_mcp_server/main.py"],
+      "cwd": "path/to/rapidapi_mcp_server",
+      "env": {
+        "RAPIDAPI_KEY": "your_rapidapi_key",
+        "PYTHONUNBUFFERED": "1",
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONPATH": "path/to/rapidapi_mcp_server"
+      },
+      "requiredTools": ["get_person_profile"],
+      "disabled": false
+    },
+    "email-finder": {
+      "command": "Python",
+      "args": ["path/to/email-finder/email_mcp_server.py"],
+      "cwd": "path/to/email-finder",
+      "env": {
+        "ANYMAILFINDER_KEY": "your_anymailfinder_key",
+        "PYTHONUNBUFFERED": "1",
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONPATH": "path/to/email-finder"
+      },
+      "requiredTools": ["find_email"],
+      "disabled": false
+    },
+    "mcp-gsuite": {
+      "command": "path/to/uv.exe",
+      "args": [
+        "--directory",
+        "path/to/mcp-gsuite",
+        "run",
+        "mcp-gsuite"
+      ],
+      "cwd": "path/to/mcp-gsuite",
+      "env": {
+        "PYTHONUNBUFFERED": "1",
+        "PYTHONIOENCODING": "utf-8"
+      },
+      "requiredTools": [
+        "gmail",
+        "calendar"
+      ],
+      "disabled": false
+    },
+    "search-mcp": {
+      "command": "path/to/Python.exe",
+      "args": ["path/to/search_mcp/main.py"],
+      "cwd": "path/to/search_mcp",
+      "env": {
+        "ANTHROPIC_API_KEY": "your_anthropic_api_key",
+        "GOOGLE_API_KEY": "your_google_api_key",
+        "GOOGLE_CSE_ID": "your_google_cse_id",
+        "PYTHONUNBUFFERED": "1",
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONPATH": "path/to/search_mcp"
+      }
+    }
+  }
+}
+```
+
+### Configuration Notes
+- Replace all `path/to/...` with your actual file paths
+- Replace all `your_..._key` with your actual API keys
+- Keep the environment variables like `PYTHONUNBUFFERED` and `PYTHONIOENCODING` as shown
+- The configuration should be added to your Claude Desktop settings
