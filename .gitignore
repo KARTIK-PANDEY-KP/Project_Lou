@@ -1,7 +1,11 @@
 linkedin-mcp-server/
 delete_backup/
-rapidapi_mcp_server/
-.venv/
+*.venv/
 __pycache__/
 *.pyc
 *.log 
+*.gauth.json
+*.oauth2creds.json
+*.accounts.json
+*.oauth2.*.json
+*.git

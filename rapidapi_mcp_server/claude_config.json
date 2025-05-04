@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "linkedin-rapidapi": {
+      "command": "C:\\Users\\karti\\.local\\bin\\uv.exe",
+      "args": [
+        "run",
+        "C:\\Users\\karti\\anthropic_hack\\rapidapi_mcp_server\\main.py"
+      ],
+      "cwd": "C:\\Users\\karti\\anthropic_hack\\rapidapi_mcp_server",
+      "env": {
+        "RAPIDAPI_KEY": "b6bd561fd5msh1665e4871fec5fdp12c27cjsn7255c764ae2e",
+        "PYTHONUNBUFFERED": "1",
+        "PYTHONIOENCODING": "utf-8"
+      },
+      "requiredTools": [
+        "get_person_profile"
+      ],
+      "disabled": false
+    }
+  }
+}
