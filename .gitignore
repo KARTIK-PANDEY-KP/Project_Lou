@@ -1,0 +1,7 @@
+linkedin-mcp-server/
+delete_backup/
+rapidapi_mcp_server/
+.venv/
+__pycache__/
+*.pyc
+*.log 
