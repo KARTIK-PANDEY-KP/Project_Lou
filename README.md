@@ -1,4 +1,4 @@
-# 🤖 Project Lou - Your AI-Powered Assistant Suite
+# 🤖 Project Lou - Your AI-Powered Assistant(MCP) Suite f ro everything Outreach
 
 ## 🌟 What is Project Lou?
 
