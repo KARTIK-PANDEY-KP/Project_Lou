@@ -1,16 +1,37 @@
-# 🤖 Project Lou - Your AI-Powered Search Assistant
+# 🤖 Project Lou - Your AI-Powered Assistant Suite
 
-## 🌟 What is Lou?
+## 🌟 What is Project Lou?
 
-Lou is an intelligent search assistant that revolutionizes how you find information online. By combining the power of natural language processing with advanced search capabilities, Lou helps you discover exactly what you're looking for - without the hassle of crafting perfect search queries.
+Project Lou is a comprehensive suite of AI-powered tools that help you automate and enhance your workflow. It combines multiple specialized MCP (Model Context Protocol) servers to provide a seamless experience for searching, tracking, and managing information.
 
-## ✨ Key Features
+## ✨ Key Components
 
-- **Natural Language Search**: Simply tell Lou what you need in plain English
-- **Smart Query Generation**: Automatically converts your requests into optimized search queries
-- **Google Custom Search Integration**: Leverages Google's powerful search engine for accurate results
-- **Intelligent Filtering**: Removes duplicate and irrelevant results
-- **Easy-to-Use API**: Simple integration with your existing applications
+### 1. Search MCP 🔍
+- Natural Language Search using Google Custom Search
+- Smart Query Generation
+- Intelligent Filtering
+- Easy-to-Use API
+
+### 2. Tracker MCP 📊
+- Track URLs and associated emails
+- Support for multiple emails per URL
+- Real-time data storage with Firebase
+- Track new/updated status
+
+### 3. LinkedIn RapidAPI MCP 👥
+- Fetch LinkedIn profile information
+- Professional data extraction
+- Automated profile analysis
+
+### 4. Email Finder MCP 📧
+- Find email addresses
+- Email verification
+- Contact discovery
+
+### 5. GSuite MCP 📅
+- Gmail integration
+- Calendar management
+- Google Workspace automation
 
 ## 🚀 Getting Started
 
@@ -19,34 +40,93 @@ Lou is an intelligent search assistant that revolutionizes how you find informat
 git clone https://github.com/KARTIK-PANDEY-KP/Project-Lou.git
 ```
 
-2. Install dependencies:
+2. Set up each MCP server:
+
+### Search MCP
 ```bash
 cd search_mcp
 pip install -r requirements.txt
+# Set GOOGLE_API_KEY and GOOGLE_CSE_ID in .env
 ```
 
-3. Set up your environment variables:
+### Tracker MCP
 ```bash
-# Create a .env file with your API keys
-GOOGLE_API_KEY=your_api_key
-GOOGLE_CSE_ID=your_cse_id
+cd tracker_mcp
+pip install -r requirements.txt
+# Add firebase-credentials.json
 ```
 
-## 💡 Example Usage
+### LinkedIn RapidAPI MCP
+```bash
+cd rapidapi_mcp_server
+pip install -r requirements.txt
+# Set RAPIDAPI_KEY in .env
+```
 
-```python
-from search_mcp.main import process_search_query
+### Email Finder MCP
+```bash
+cd email-finder
+pip install -r requirements.txt
+# Set ANYMAILFINDER_KEY in .env
+```
 
-# Ask Lou anything in natural language
-result = process_search_query("Find graduation photographers at USC for 2025")
+### GSuite MCP
+```bash
+cd mcp-gsuite
+pip install -r requirements.txt
+# Configure OAuth2 credentials
 ```
 
 ## 🛠️ Project Structure
 
-- `search_mcp/`: Core search functionality
-  - `main.py`: Main search processing logic
-  - `test.py`: Unit tests
-  - `requirements.txt`: Project dependencies
+```
+Project-Lou/
+├── search_mcp/         # Search functionality
+├── tracker_mcp/        # URL and email tracking
+├── rapidapi_mcp_server/# LinkedIn integration
+├── email-finder/       # Email discovery
+└── mcp-gsuite/        # Google Workspace integration
+```
+
+## 🔐 API Keys and Security
+
+Each MCP server requires specific API keys or credentials:
+- Search MCP: Google API Key & CSE ID
+- Tracker MCP: Firebase Admin SDK credentials
+- LinkedIn MCP: RapidAPI Key
+- Email Finder: AnyMailFinder API Key
+- GSuite MCP: Google OAuth2 credentials
+
+⚠️ Never commit API keys or credentials to version control!
+
+## 💡 Example Usage
+
+### Search
+```python
+Use the web_search tool with your query
+```
+
+### Track URLs and Emails
+```python
+Use the track_url_email tool with:
+- url: "https://example.com"
+- email: "user@example.com"
+```
+
+### LinkedIn Profile
+```python
+Use the get_person_profile tool with LinkedIn URL
+```
+
+### Find Email
+```python
+Use the find_email tool with name and domain
+```
+
+### GSuite
+```python
+Use the gmail or calendar tools for Google Workspace tasks
+```
 
 ## 🤝 Contributing
 
@@ -60,9 +140,16 @@ We welcome contributions! Feel free to:
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 🌟 Why Lou?
+## 🌟 Why Project Lou?
 
-Lou is more than just a search tool - it's your intelligent assistant that understands your intent and finds exactly what you need. Whether you're researching, gathering information, or looking for specific services, Lou makes the process effortless and efficient.
+Project Lou is your comprehensive AI assistant suite that:
+- Automates repetitive tasks
+- Enhances productivity
+- Provides intelligent insights
+- Integrates seamlessly with popular services
+- Makes complex workflows simple
+
+Whether you're researching, managing contacts, or automating your workflow, Project Lou's suite of tools makes the process effortless and efficient.
 
 ---
 Made with ❤️ by Kartik Pandey 
