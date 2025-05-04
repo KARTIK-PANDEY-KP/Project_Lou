@@ -8,6 +8,8 @@ from dotenv import load_dotenv
 import firebase_admin
 from firebase_admin import credentials, firestore
 import json
+import base64
+import re
 
 # Load environment variables
 load_dotenv()
@@ -21,6 +23,14 @@ cred = credentials.Certificate(os.getenv('FIREBASE_CREDENTIALS_PATH'))
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
+def encode_url(url: str) -> str:
+    """Encode URL to make it a valid Firestore document ID."""
+    # Remove protocol and special characters
+    clean_url = re.sub(r'^https?://', '', url)
+    clean_url = re.sub(r'[^a-zA-Z0-9-]', '_', clean_url)
+    # Ensure it's not too long (Firestore has a limit)
+    return clean_url[:1500]
+
 app = Server("tracker-mcp")
 
 @app.list_tools()
@@ -30,7 +40,7 @@ async def list_tools() -> list[Tool]:
         Tool(
             name="track_url_email",
             description="Track a URL and its associated email",
-            parameters={
+            inputSchema={
                 "type": "object",
                 "properties": {
                     "url": {
@@ -48,7 +58,7 @@ async def list_tools() -> list[Tool]:
         Tool(
             name="get_tracked_data",
             description="Get all tracked URLs and emails",
-            parameters={
+            inputSchema={
                 "type": "object",
                 "properties": {}
             }
@@ -62,8 +72,11 @@ async def call_tool(name: str, arguments: Any) -> Sequence[TextContent]:
             url = arguments.get("url")
             email = arguments.get("email")
             
+            # Encode URL for document ID
+            doc_id = encode_url(url)
+            
             # Get or create document for URL
-            doc_ref = db.collection('url_tracking').document(url)
+            doc_ref = db.collection('url_tracking').document(doc_id)
             doc = doc_ref.get()
             
             if doc.exists:
@@ -81,7 +94,7 @@ async def call_tool(name: str, arguments: Any) -> Sequence[TextContent]:
                     'is_new': True
                 })
             
-            return [TextContent(text=f"Successfully tracked URL: {url} with email: {email}")]
+            return [TextContent(type="text", text=f"Successfully tracked URL: {url} with email: {email}")]
                 
         elif name == "get_tracked_data":
             # Get all documents
@@ -90,7 +103,7 @@ async def call_tool(name: str, arguments: Any) -> Sequence[TextContent]:
             for doc in docs:
                 data = doc.to_dict()
                 output.append(f"URL: {data['url']}, Emails: {', '.join(data['emails'])}, New: {data['is_new']}")
-            return [TextContent(text="\n".join(output))]
+            return [TextContent(type="text", text="\n".join(output))]
                 
         else:
             raise ValueError(f"Unknown tool: {name}")
