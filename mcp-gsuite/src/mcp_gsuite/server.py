@@ -22,6 +22,7 @@ from urllib.parse import (
     parse_qs,
 )
 from . import tool_registry
+import httplib2
 
 class OAuthServer(HTTPServer):
     def __init__(self, server_address, auth_complete):
@@ -123,7 +124,7 @@ def setup_oauth2(user_id: str):
         logging.info(f"credentials found for {user_id}")
         if credentials.access_token_expired:
             logging.info(f"credentials expired. try refresh")
-            credentials.refresh(Request())
+            credentials.refresh(httplib2.Http())
 
         # this call refreshes access token
         logging.info(f"refreshing credentials")
