@@ -1,6 +1,7 @@
 linkedin-mcp-server/
 delete_backup/
 *.venv/
+*venv/
 __pycache__/
 *.pyc
 *.log 
@@ -9,3 +10,10 @@ __pycache__/
 *.accounts.json
 *.oauth2.*.json
 *.git
+*.env
+*.env.local
+*.env.development.local
+*.env.test.local
+*.env.production.local
+*.env.development
+*.env.test
